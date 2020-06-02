@@ -42,6 +42,7 @@ class _HomePageState extends State<HomePage> {
   );
 
   Widget buildPageView() {
+
     return PageView(
       controller: pageController,
       onPageChanged: (index) {
@@ -73,12 +74,16 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+        double width= MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
         backgroundColor: Colors.redAccent,
         title: Text("Manga Reader", style: TextStyle(color: Colors.white),),
-        leading: IconButton(icon: Icon(Icons.public), onPressed: null),
+        leading:Builder(
+        builder: (context) => 
+          IconButton(icon: Icon(Icons.public), onPressed: ()=> Scaffold.of(context).openDrawer())
+    ),
         actions: <Widget>[
           IconButton(icon: Icon(Icons.search), onPressed: null)
         ],
@@ -91,6 +96,40 @@ class _HomePageState extends State<HomePage> {
           bottomTapped(index);
         },
         items: buildBottomNavBarItems(),
+      ),
+      drawer: Drawer(
+        child: ListView(
+    // Important: Remove any padding from the ListView.
+    padding: EdgeInsets.zero,
+    children: <Widget>[
+      Container(
+        width: width*2/3,
+        height: 100,
+        
+        child: Center(child: Text('Drawer Header', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold))),
+        
+        decoration: BoxDecoration(
+          color: Colors.pink,
+          
+        ),
+      ),
+      ListTile(
+        title: Text('Item 1'),
+        
+        onTap: () {
+          // Update the state of the app.
+          // ...
+        },
+      ),
+      ListTile(
+        title: Text('Item 2'),
+        onTap: () {
+          // Update the state of the app.
+          // ...
+        },
+      ),
+    ],
+  ),
       ),
     );
   }

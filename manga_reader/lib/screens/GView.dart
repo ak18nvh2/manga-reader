@@ -18,9 +18,11 @@ class _GrViewState extends State<GrView> {
             GridView.builder(
                 itemCount: 30,
                 shrinkWrap: true,
+                
                 physics: ClampingScrollPhysics(),
                 scrollDirection: Axis.vertical,
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  childAspectRatio: 2/3,
                     crossAxisCount: 3),
                 itemBuilder: (BuildContext context, int index) {
                   return Padding(
@@ -34,8 +36,7 @@ class _GrViewState extends State<GrView> {
                               shape: BeveledRectangleBorder(
                                   borderRadius: BorderRadius.circular(8)),
                               child: Container(
-                                width: width,
-                                height: width-34 ,
+                                
                                 child: ClipRRect(
                                   borderRadius: BorderRadius.circular(8),
                                   child: GestureDetector(
